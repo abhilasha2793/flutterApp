@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/Todo.dart';
-import '../widget/appBarWidget.dart';
+
+/// A class for adding or updating a Todo
+/// AddUpdateTodoScreen is a StatefulWidget
+/// _AddUpdateTodoState is a state of AddUpdateTodoScreen class
 
 class AddUpdateTodoScreen extends StatefulWidget {
   final bool update;
@@ -57,7 +60,6 @@ class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
               },
               child: Text(
                 widget.update ? 'Update' : 'Submit',
-                style: TextStyle(),
               ))
         ],
       ),

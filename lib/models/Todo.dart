@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+/// A data model class for Todo
+
 class Todo {
   final int userId;
   final int id;

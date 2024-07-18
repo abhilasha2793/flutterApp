@@ -2,10 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_dummy_app/models/Todo.dart';
-import 'ApiConstants.dart';
+import 'api_constants.dart';
 import 'package:http/http.dart' as http;
 
+/// A class for making api service call to fetch todo list from server
+
 class ApiService {
+
+
   Future<List<Todo>> getTodos() async {
     try {
       var url = Uri.parse(ApiConstants.BASE_URL + ApiConstants.todos);

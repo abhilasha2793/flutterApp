@@ -5,8 +5,13 @@ import 'package:flutter_dummy_app/widget/todo_list_item.dart';
 import 'package:shimmer/shimmer.dart';
 import '../http/api_service.dart';
 import '../models/Todo.dart';
-import '../widget/appBarWidget.dart';
-import 'package:http/http.dart' as http;
+import '../widget/app_bar_widget.dart';
+
+
+/// This is a StatefulWidget class for displaying the list of todos
+/// TodoListScreen is a StatefulWidget
+/// _TodoListState is a state of TodoListScreen
+
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key, title});
