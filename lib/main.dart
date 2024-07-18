@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dummy_app/screen/todo_list.dart';
 
+/// The main function of the application
 void main() {
   runApp(const MyApp());
 }
+
+/// This is the root widget of the application
+/// MyApp is a StatelessWidget
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

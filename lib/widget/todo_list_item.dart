@@ -2,15 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../models/Todo.dart';
 
+
+/// A clas for Todo list item
+/// TodoListItem is a StatelessWidget which takes a Todo object as a parameter and displays the task title and a checkbox to mark the task as completed
+
 class TodoListItem extends StatelessWidget {
   final Todo task;
 
-  TodoListItem({super.key, required this.task});
+  const TodoListItem({super.key, required this.task});
 
   void _onChanged(bool value) {
-    if (kDebugMode) {
-      print('Task completed : $value');
-    }
+    task.completed = value;
   }
 
   @override

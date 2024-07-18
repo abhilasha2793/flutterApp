@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/Todo.dart';
-import '../widget/appBarWidget.dart';
+
+/// A class for adding or updating a Todo
+/// AddUpdateTodoScreen is a StatefulWidget
+/// _AddUpdateTodoState is a state of AddUpdateTodoScreen class
 
 class AddUpdateTodoScreen extends StatefulWidget {
   final bool update;
@@ -23,6 +26,7 @@ class AddUpdateTodoScreen extends StatefulWidget {
 
 class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
   final TextEditingController _titleController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -37,31 +41,41 @@ class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          TextField(
-              controller: _titleController,
-              maxLines: 4,
-              autofocus: true,
-              decoration: const InputDecoration(
-                  hintText: 'Enter task title',
-                  labelText: 'Task Title',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0))))),
-          const SizedBox(height: 20),
-          ElevatedButton(
-              onPressed: () {
-                _addUpdateTodo();
-              },
-              child: Text(
-                widget.update ? 'Update' : 'Submit',
-                style: TextStyle(),
-              ))
-        ],
-      ),
-    );
+        appBar: _buildAppBar(),
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              TextFormField(
+                  controller: _titleController,
+                  maxLines: 4,
+                  autofocus: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter task title';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                      hintText: 'Enter task title',
+                      labelText: 'Task Title',
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))))),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _addUpdateTodo();
+                    }
+                  },
+                  child: Text(
+                    widget.update ? 'Update' : 'Submit',
+                  ))
+            ],
+          ),
+        ));
   }
 
   void _addUpdateTodo() {
@@ -89,7 +103,6 @@ class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
       Navigator.pop(context, newTodo);
     }
   }
-
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context)

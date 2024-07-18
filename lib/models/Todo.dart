@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 
-class Todo {
-  final int userId;
-  final int id;
-  final String title;
-  final bool completed;
+/// A data model class for Todo
 
-  const Todo(
+class Todo {
+  int userId;
+  int id;
+  String title;
+  bool completed;
+
+  Todo(
       {required this.userId,
       required this.id,
       required this.title,
@@ -20,6 +22,4 @@ class Todo {
       completed: data['completed'],
     );
   }
-
-
 }

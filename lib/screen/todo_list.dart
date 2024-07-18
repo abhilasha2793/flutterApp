@@ -5,8 +5,13 @@ import 'package:flutter_dummy_app/widget/todo_list_item.dart';
 import 'package:shimmer/shimmer.dart';
 import '../http/api_service.dart';
 import '../models/Todo.dart';
-import '../widget/appBarWidget.dart';
-import 'package:http/http.dart' as http;
+import '../widget/app_bar_widget.dart';
+
+
+/// This is a StatefulWidget class for displaying the list of todos
+/// TodoListScreen is a StatefulWidget
+/// _TodoListState is a state of TodoListScreen
+
 
 class TodoListScreen extends StatefulWidget {
   const TodoListScreen({super.key, title});
@@ -31,7 +36,7 @@ class _TodoListState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Todo List",
       ),
       floatingActionButton: FloatingActionButton(
@@ -128,13 +133,24 @@ class _TodoListState extends State<TodoListScreen> {
   }
 
   void _addUpdateTodo(Todo newTodo) {
+    late String message;
     setState(() {
       int index = _todos.indexWhere((item) => item.id == newTodo.id);
       if (index == -1) {
         _todos.insert(0, newTodo);
+        message= 'Task has been added successfully!';
       } else {
         _todos[index] = newTodo;
+        message = 'Task has been updated successfully!';
       }
     });
+    _showSnackBar(message);
+
+  }
+
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }
