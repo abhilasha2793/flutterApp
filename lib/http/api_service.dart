@@ -12,7 +12,7 @@ class ApiService {
 
   Future<List<Todo>> getTodos() async {
     try {
-      var url = Uri.parse(ApiConstants.BASE_URL + ApiConstants.todos);
+      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.todos);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<dynamic> mapResponse = json.decode(response.body);

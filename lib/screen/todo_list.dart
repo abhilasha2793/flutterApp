@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dummy_app/screen/add_update_todo.dart';
 import 'package:flutter_dummy_app/widget/todo_list_item.dart';
 import 'package:shimmer/shimmer.dart';
+
 import '../http/api_service.dart';
 import '../models/Todo.dart';
 import '../widget/app_bar_widget.dart';
@@ -138,10 +138,10 @@ class _TodoListState extends State<TodoListScreen> {
       int index = _todos.indexWhere((item) => item.id == newTodo.id);
       if (index == -1) {
         _todos.insert(0, newTodo);
-        message= 'Task has been added successfully!';
+        message= 'Task has been added successfully !';
       } else {
         _todos[index] = newTodo;
-        message = 'Task has been updated successfully!';
+        message = 'Task has been updated successfully !';
       }
     });
     _showSnackBar(message);

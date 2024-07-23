@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../models/Todo.dart';
@@ -102,11 +101,6 @@ class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
       // pop back to screen
       Navigator.pop(context, newTodo);
     }
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
   }
 
 // method to create AppBar
