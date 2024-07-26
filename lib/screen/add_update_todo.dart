@@ -49,6 +49,7 @@ class _AddUpdateTodoState extends State<AddUpdateTodoScreen> {
               TextFormField(
                   controller: _titleController,
                   maxLines: 4,
+                  maxLength: 200,
                   autofocus: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {

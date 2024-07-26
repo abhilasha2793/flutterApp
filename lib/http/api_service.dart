@@ -16,7 +16,7 @@ class ApiService {
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<dynamic> mapResponse = json.decode(response.body);
-        return mapResponse.map((json) => Todo.fromJson(json)).toList().sublist(0,5);
+        return mapResponse.map((json) => Todo.fromJson(json)).toList();
       } else {
         throw Exception('Failed to load todos');
       }
