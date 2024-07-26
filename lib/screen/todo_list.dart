@@ -26,6 +26,7 @@ class _TodoListState extends State<TodoListScreen> {
   late Future<List<Todo>> _todoListFuture;
   final ApiService _todoService = ApiService();
   List<Todo> _todos = [];
+  bool _showFab = true;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _TodoListState extends State<TodoListScreen> {
       appBar: const CustomAppBar(
         title: "Todo List",
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton:_showFab ? FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
@@ -52,18 +53,22 @@ class _TodoListState extends State<TodoListScreen> {
           );
         },
         child: const Icon(Icons.add),
-      ),
+      ): null,
       body: FutureBuilder<List<Todo>>(
         future: _todoListFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
+            _showFab = false;
             return _buildLoadingShimmer();
           } else if (snapshot.hasError) {
+            _showFab=false;
             return _buildErrorWidget(snapshot.error.toString());
           } else if (snapshot.hasData) {
+            _showFab=true;
             _todos = snapshot.data!;
             return _buildTodoList(_todos);
           } else {
+            _showFab=false;
             return _buildErrorWidget('Unknown error');
           }
         },
